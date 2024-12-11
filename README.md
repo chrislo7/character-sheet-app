@@ -1,5 +1,6 @@
 # recruiting-webapp-character
-React coding test
+
+Hello! Please read Explanation.md for some assumptions i've made as well as explanations and a list of todo's i can do for this app.
 
 # Create a repository from this template
 - Click on `Use this template` dropdown on this repo page.

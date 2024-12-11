@@ -42,10 +42,12 @@ function CharacterSheet({ character, setCharacter }: any) {
   };
 
   const updateSkillPoints = (skillName: string, diff: number) => {
-    const totalPoints = 10 + 4 * calculateModifier(attributes.Intelligence);
+    // note: i have no clue if we should be using Intelligence only or the specific skill
+    // I am using Intelligence here for now, can easily update this to use the skillName passed in
+    const totalPoints = 10 + (4 * calculateModifier(attributes.Intelligence));
     const spentPoints = Object.values(skills).reduce<number>((sum, skill) => sum + (skill as { points: number }).points, 0);
 
-    if (spentPoints + diff > totalPoints) return;
+    if (spentPoints + diff >= totalPoints) return;
 
     setCharacter({
       ...character,
