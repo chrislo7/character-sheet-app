@@ -1,3 +1,10 @@
+.CharacterSheet {
+  border: 0.5px solid grey;
+  margin: 24px 12px;
+  border-radius: 16px;
+  padding: 12px;
+}
+
 .character-attributes-skills {
   display: flex;
   justify-content: center;

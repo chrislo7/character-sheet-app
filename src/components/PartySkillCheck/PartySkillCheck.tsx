@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SKILL_LIST } from '../../utils/consts';
+import './PartySkillCheck.css';
 
 function PartySkillCheck({ characters }: any) {
   const [selectedSkill, setSelectedSkill] = useState<string>('');
@@ -31,9 +32,9 @@ function PartySkillCheck({ characters }: any) {
   };
 
   return (
-    <div style={{ marginBottom: '48px' }} className="PartySkillCheck">
+    <div className="PartySkillCheck">
       <h2>Party Skill Check</h2>
-      <select onChange={(e) => setSelectedSkill(e.target.value)}>
+      Skill: <select onChange={(e) => setSelectedSkill(e.target.value)}>
         <option value="">Select Skill</option>
         {SKILL_LIST.map((skill) => (
           <option key={skill.name} value={skill.name}>
@@ -41,7 +42,7 @@ function PartySkillCheck({ characters }: any) {
           </option>
         ))}
       </select>
-      <input
+      DC: <input
         type="number"
         placeholder="DC"
         value={dc}

@@ -6,6 +6,9 @@ import type { Class } from "../../types";
 function CharacterSheet({ character, setCharacter }: any) {
   const [showClassRequirements, setShowClassRequirements] = useState<boolean>(false);
   const [currentClass, setCurrentClass] = useState<Class | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<string>('');
+  const [dc, setDc] = useState<number>(0);
+  const [skillCheckResult, setSkillCheckResult] = useState<string | null>(null);
 
   const { attributes, skills, id } = character;
 
@@ -66,9 +69,56 @@ function CharacterSheet({ character, setCharacter }: any) {
     }
   };
 
+  const handleSkillCheck = () => {
+    if (!selectedSkill) {
+      setSkillCheckResult(`Error: Select a skill before rolling!`);
+      return;
+    }
+
+    const randomRoll = Math.floor(Math.random() * 20) + 1;
+    const skillTotal = skills[selectedSkill].total;
+    const success = randomRoll + skillTotal >= dc;
+
+    setSkillCheckResult(
+      `Roll: ${randomRoll}, Total: ${randomRoll + skillTotal}, ${success ? 'Success!' : 'Failure'}`
+    );
+  };
+
   return (
     <div className="CharacterSheet">
       <h2>Character {id && `(ID: ${id})`}</h2>
+
+      <div>
+        <h3>Individual Skill Check</h3>
+          <div>
+            <label>
+              Skill:
+              <select
+                value={selectedSkill}
+                onChange={(e) => setSelectedSkill(e.target.value)}
+              >
+                <option value="">Select a Skill</option>
+                {SKILL_LIST.map((skill) => (
+                  <option key={skill.name} value={skill.name}>
+                    {skill.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              DC:
+              <input
+                type="number"
+                value={dc}
+                onChange={(e) => setDc(Number(e.target.value))}
+              />
+            </label>
+          </div>
+          <button onClick={handleSkillCheck}>Roll</button>
+          {skillCheckResult && <p>{skillCheckResult}</p>}
+      </div>
 
       <div className="character-attributes-skills">
         <section style={{width: '30%'}}>

@@ -7,7 +7,6 @@ import { fetchCharacters, saveCharacters } from './utils/Api';
 
 function App() {
   const [characters, setCharacters] = useState<any[]>([]);
-  const [currentCharacterId, setCurrentCharacterId] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadCharacters() {
@@ -20,7 +19,7 @@ function App() {
 
   const saveAllCharacters = async () => {
     await saveCharacters(characters);
-    alert('Characters saved successfully!');
+    alert('Characters saved!');
   };
 
   const addCharacter = () => {
@@ -43,8 +42,9 @@ function App() {
           <button className="App-header-button" onClick={addCharacter}>Add Character</button>
           <button className="App-header-button" onClick={saveAllCharacters}>Save All</button>
         </div>
+        <PartySkillCheck characters={characters} />
       </header>
-      <main>
+      <main style={{marginBottom: '48px'}}>
         {characters.map((character) => (
           <CharacterSheet
             key={character.id}
@@ -56,7 +56,6 @@ function App() {
             }
           />
         ))}
-        <PartySkillCheck characters={characters} />
       </main>
     </div>
   );
