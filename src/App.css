@@ -24,6 +24,17 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-bottom: 12px;
+}
+
+.App-header-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+}
+
+.App-header-button {
+  width: 100px;
 }
 
 .App-section {
@@ -43,4 +54,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.button {
+  margin: 0 6px;
 }

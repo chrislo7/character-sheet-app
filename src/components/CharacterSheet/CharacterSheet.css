@@ -1,0 +1,22 @@
+.character-attributes-skills {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  gap: 24px;
+}
+
+.character-attribute {
+  display: flex;
+  justify-content: space-between;
+}
+
+.character-skill {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.character-skill-buttons {
+  display: flex;
+  gap: 12px;
+}
